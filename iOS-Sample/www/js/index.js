@@ -1,3 +1,16 @@
+//Global error handler!
+window.onerror = function(msg, url, line) {
+    // You can view the information in an alert to see things working
+    // like so:
+    var errStr = "Error: " + msg + "\nurl: " + url + "\nline #: " + line;
+    console.log(errStr);
+    alert(errStr);
+
+    // If you return true, then error alerts (like in older versions of
+    // Internet Explorer) will be suppressed.
+    return false;
+};
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -34,35 +47,36 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+        var timerEl = document.getElementById('timer');
+        var timerCount = 0;
+        setInterval(function(){
+            timerCount++;
+            timerEl.innerText = timerCount;
+        }, 1000);
+
+        var btnStart = document.getElementById('btnStart');
+        var btnStop = document.getElementById('btnStop');
+        var btnTemporary = document.getElementById('btnTemporary');
+        var message = document.getElementById('message');
+
+        btnStart.addEventListener('click', function(){
+            BackgroundJS.LockBackgroundTime();
+            message.innerText = 'Locked background processing indefinitely. Process away!';
+        });
+
+        btnStop.addEventListener('click', function(){
+            BackgroundJS.UnlockBackgroundTime();
+            message.innerText = 'Unlocked background processing. No more background operations :(';
+        });
+
+        btnTemporary.addEventListener('click', function(){
+            BackgroundJS.SetBackgroundSeconds(10);
+            message.innerText = 'Background processing for the next 10 seconds! Switch away!';
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
-
-        var seconds = 1000;
-        console.log('About to set background seconds...');
-        setTimeout(function(){
-            console.log('Setting!');
-            BackgroundJS.SetBackgroundSeconds(10);
-
-            setTimeout(function(){
-                console.log('Locking!');
-                BackgroundJS.LockBackgroundTime();
-
-                setTimeout(function(){
-                    console.log('Unlocking!');
-                    BackgroundJS.UnlockBackgroundTime();
-
-
-                }, 10*seconds);
-            }, 5*seconds);
-        }, 1*seconds);
     }
 };

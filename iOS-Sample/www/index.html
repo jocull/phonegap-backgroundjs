@@ -21,16 +21,21 @@
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
     </head>
     <body>
         <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <h1 id="timer">0</h1>
+            <div>
+                <button id="btnStart">Start BG Task</button>
+                <button id="btnStop">Stop BG Task</button>
+                <button id="btnTemporary">Get 10 BG seconds</button>
+            </div>
+            <div id="message">
+                The timer ticks every second when in the foreground.
+                Choose a background operation to see if it increments in the background.
             </div>
         </div>
         <script type="text/javascript" src="cordova-2.7.0.js"></script>

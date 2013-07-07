@@ -1,4 +1,5 @@
 
+.DS_Store
 iOS-Sample/BackgroundJS.xcodeproj/project.xcworkspace/*
 iOS-Sample/BackgroundJS.xcodeproj/xcuserdata/*
-.DS_Store
+iOS-Sample/www/.idea/*
