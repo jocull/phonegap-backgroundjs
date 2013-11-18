@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.colibrisoftware.plugins.backgroundjs"
+        version="3.3">
+
+  <name>BackgroundJS</name>
+
+  <description>
+    Now you can background JavaScript operations on iOS with PhoneGap!
+
+    Read more here: http://www.codefromjames.com/wordpress/?p=154
+  </description>
+
+  <license>MIT</license>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <js-module src="src/js/BackgroundJS.js" name="BackgroundJS">
+    <clobbers target="window.plugin.backgroundjs" />
+  </js-module>
+
+  <!-- ios -->
+  <platform name="ios">
+
+    <config-file target="config.xml" parent="/*">
+      <feature name="BackgroundJS">
+        <param name="ios-package" value="BackgroundJS"/>
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/BackgroundJS.h"/>
+    <source-file src="src/ios/BackgroundJS.m"/>
+  </platform>
+
+  <!-- android Coming SOON! -->
+  <!-- <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="BackgroundJS">
+        <param name="android-package" value="nl.xservices.plugins.BackgroundJS" />
+      </feature>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    </config-file>
+
+    <source-file src="src/android/com/colibrisoftware/plugins/BackgroundJS.java" target-dir="src//plugins"/>
+  </platform>
+  -->
+</plugin>
