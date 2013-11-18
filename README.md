@@ -61,7 +61,7 @@ BackgroundJS is available in JavaScript via:
 
 Get a block of secondsi (e.g. use a background thread for 10 seconds):
 ```js
-	ackgroundJS.setBackgroundSeconds(10);
+	window.plugins.backgroundjs.setBackgroundSeconds(10);
 ```
 Run in the background indefinitely:
 
