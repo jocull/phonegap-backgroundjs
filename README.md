@@ -36,7 +36,7 @@ While the background task is active, anything goes! You can run JavaScript in th
 
 Add the BackgroundJS plugin to your Phonegap project:
 
-```
+```sh
 phonegap local plugin add <location of BackgroundJS git repository>
 ```
 
