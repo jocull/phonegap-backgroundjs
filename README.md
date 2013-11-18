@@ -31,6 +31,7 @@ Uses a sleep countdown timer paired with a UIBackgroundTaskIdentifier. The magic
 		[app endBackgroundTask:task];
 		task = UIBackgroundTaskInvalid;
 	}
+```
 
 While the background task is active, anything goes! You can run JavaScript in the background.
 
