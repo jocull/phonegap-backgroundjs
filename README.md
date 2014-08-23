@@ -7,6 +7,7 @@ Read more here: http://www.codefromjames.com/wordpress/?p=154
 
 Uses a sleep countdown timer paired with a UIBackgroundTaskIdentifier. The magic looks like this:
 
+```objc
 	- (void)doBackgroundTimeLoop
 	{
 		__block UIBackgroundTaskIdentifier task;
@@ -15,7 +16,7 @@ Uses a sleep countdown timer paired with a UIBackgroundTaskIdentifier. The magic
 			[app endBackgroundTask:task];
 			task = UIBackgroundTaskInvalid;
 		}];
-	
+
 		while(YES){
 			@synchronized(self){
 				backgroundSecondsCounter--;
@@ -25,40 +26,54 @@ Uses a sleep countdown timer paired with a UIBackgroundTaskIdentifier. The magic
 			}
 			[NSThread sleepForTimeInterval:1];
 		}
-	
+
 		// End this background task now
 		[app endBackgroundTask:task];
 		task = UIBackgroundTaskInvalid;
 	}
+```
 
 While the background task is active, anything goes! You can run JavaScript in the background.
 
-Copy `BackgroundJS.h` and `BackgroundJS.m` to your `Plugins` folder on your app.
+Add the BackgroundJS plugin to your Phonegap project:
 
-Then, simply include the script:
+```sh
+phonegap local plugin add <location of BackgroundJS git repository>
+```
 
-	<script type="text/javascript" src="BackgroundJS.js"></script>
-	
+
 ...enable the plugin in `config.xml`:
 
-    <plugins>
-    	...
-        <plugin name="BackgroundJS" value="BackgroundJS" />
-    </plugins>
-    
+```xml
+    <feature name="BackgroundJS">
+      <param name="ios-package" value="BackgroundJS" />
+    </feature>
+```
+
 ...and request some background time from JavaScript!
 
-Get a block of seconds:
+BackgroundJS is available in JavaScript via:
 
-	BackgroundJS.SetBackgroundSeconds(10);
+```javascript
+  window.plugins.backgroundjs
+```
 
+
+Get a block of secondsi (e.g. use a background thread for 10 seconds):
+```js
+	window.plugins.backgroundjs.setBackgroundSeconds(10);
+```
 Run in the background indefinitely:
 
-	BackgroundJS.LockBackgroundTime();
+```js
+	window.plugins.backgroundjs.lockBackgroundTime();
+```
 
 Stop running background tasks immediately:
 
-	BackgroundJS.UnlockBackgroundTime();
+```js
+ window.plugins.backgroundjs.unlockBackgroundTime();
+```
 
 Be careful when using this, as Apple specifications are picky.
 If you're not using background audio or tracking location, your app may be rejected for background tasking guidelines.
