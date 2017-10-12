@@ -1,0 +1,19 @@
+{
+  "author": {
+    "name": "James O'Cull"
+  },
+  "license": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jocull/phonegap-backgroundjs.git"
+  },
+  "name": "phonegap-backgroundjs",
+  "version": "3.4.0",
+  "description": "Background JavaScript operations on iOS with Cordova",
+  "cordova": {
+    "id": "com.colibrisoftware.plugins.backgroundjs",
+    "platforms": [
+      "ios"
+    ]
+  }
+}
