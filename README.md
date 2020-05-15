@@ -3,7 +3,7 @@ PhoneGap + Background.js
 
 Whoa! Now you can background JavaScript operations on iOS with PhoneGap!
 
-Read more here: http://www.codefromjames.com/wordpress/?p=154
+Please note that this code is now _very old_, but you can read more on my old (dead, archived) blog: https://web.archive.org/web/20170203171054/http://www.codefromjames.com/wordpress/?p=154
 
 Uses a sleep countdown timer paired with a UIBackgroundTaskIdentifier. The magic looks like this:
 
